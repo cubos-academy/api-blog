@@ -1,6 +1,6 @@
-const fsp = require('fs/promises');
+const fsp = require("fs/promises");
 
-const { uploadFile } = require('../helpers/handleUpload');
+const { uploadFile } = require("../helpers/handleUpload");
 
 const removeFileFromDisk = fsp.unlink;
 
@@ -12,7 +12,7 @@ async function createGenericUpload(request, response) {
   }
 
   if (!file) {
-    return response.status(400).json('Select a file to upload');
+    return response.status(400).json("Select a file to upload");
   }
 
   const { filename: fileName, path } = file;
