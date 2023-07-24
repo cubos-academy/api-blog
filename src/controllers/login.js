@@ -8,9 +8,13 @@ const { comparePasswords } = require("../helpers/handlePassword");
 async function login(request, response) {
   const { email, password } = request.body;
 
+  if (!email || !password) {
+    return response.status(400).json("E-mail and password is required");
+  }
+
   const user = await userRepository.findOneBy({ email });
 
-  if (!user || user.deletedAt) {
+  if (!user) {
     return response.status(404).json("Invalid credentials");
   }
 

@@ -1,6 +1,5 @@
 const { Router } = require("express");
 require("express-async-errors");
-const { globalErrorHandler } = require("../controllers/error");
 
 const routes = Router();
 
@@ -13,7 +12,5 @@ routes.get("/", (_, response) =>
 
 routes.use(allRoutes);
 routes.use(fileRoutes);
-
-routes.use(globalErrorHandler);
 
 module.exports = routes;

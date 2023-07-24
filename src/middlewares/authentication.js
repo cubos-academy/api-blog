@@ -17,9 +17,9 @@ const authentication = async (request, response, next) => {
     const token = authorization.replace("Bearer", "").trim();
     const result = await validateToken(token);
 
-    const { id, email, nickname } = result;
+    const { id, email } = result;
 
-    const user = await userRepository.findOneBy({ id, email, nickname });
+    const user = await userRepository.findOneBy({ id, email });
 
     if (!user) {
       return response.status(404).json("Invalid Token");

@@ -9,6 +9,7 @@ exports.seed = async function (knex) {
     name: "Daniel",
     email: "daniel.lopes@cubos.academy",
     password: encryptedPassword,
+    nickname: "danielopes",
   };
 
   await knex("users").insert(superAdmin);
