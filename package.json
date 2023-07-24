@@ -1,0 +1,50 @@
+{
+  "name": "api-javascript-express-knex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon",
+    "debug": "nodemon --inspect",
+    "test": "jest",
+    "migration:create": "knex migrate:make",
+    "migration:revert": "knex migrate:rollback",
+    "migration:run": "knex migrate:latest",
+    "seed:create": "knex seed:make",
+    "seed:run": "knex seed:run",
+    "postgres:start": "docker run -d -p $(grep DB_PORT .env | cut -d= -f 2):5432 --name $(grep DB_DATABASE .env | cut -d= -f 2) -e POSTGRES_HOST_AUTH_METHOD=trust postgres:12-alpine",
+    "database:create": "docker exec $(grep DB_DATABASE .env | cut -d= -f 2) psql -U postgres postgres -c \"CREATE DATABASE $(grep DB_DATABASE .env | cut -d= -f 2)\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cubos/knex-repository": "0.0.0-dev.20210122162111",
+    "@sentry/node": "^6.16.1",
+    "@sentry/tracing": "^6.16.1",
+    "backblaze-b2": "^1.7.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "date-fns": "^2.28.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.95.13",
+    "multer": "^1.4.4",
+    "nodemailer": "^6.7.2",
+    "nodemailer-express-handlebars": "^4.0.0",
+    "pg": "^8.7.1",
+    "socket.io": "^4.4.1",
+    "uuid": "^8.3.2",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "eslint": "^8.4.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "jest": "^27.4.2",
+    "nodemon": "^2.0.14",
+    "supertest": "^6.1.6"
+  }
+}
