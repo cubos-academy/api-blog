@@ -12,6 +12,17 @@ async function getPosts(request, response) {
   return response.status(200).json(posts);
 }
 
+async function getPost(request, response) {
+  const { id } = request.params;
+  const post = await postRepository.findOneBy({ id });
+
+  if (!post) {
+    return response.status(404).json({});
+  }
+
+  return response.status(200).json(post);
+}
+
 async function createPost(request, response) {
   const { title, cover, description } = request.body;
 
@@ -65,6 +76,7 @@ async function deletePost(request, response) {
 
 module.exports = {
   getPosts,
+  getPost,
   createPost,
   deletePost,
   updatePost,
