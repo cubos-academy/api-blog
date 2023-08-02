@@ -4,7 +4,7 @@ exports.up = async function (knex) {
   await BaseRepository.createTable(knex, "posts", (table) => {
     table.string("title").notNullable();
     table.string("description").notNullable();
-    table.string("cover").unique().notNullable();
+    table.string("cover").notNullable();
     table.string("author").notNullable();
   });
 };
